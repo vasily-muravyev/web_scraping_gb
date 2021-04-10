@@ -195,7 +195,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+class_1/.env
 env/
 venv/
 ENV/
@@ -227,3 +227,5 @@ dmypy.json
 cython_debug/
 
 /class_1/
+/homework_1/repositories-data/
+/homework_1/.env
