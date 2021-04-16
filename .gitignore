@@ -229,3 +229,5 @@ cython_debug/
 /class_1/
 /homework_1/repositories-data/
 /homework_1/.env
+/class_2/
+/homework_2/*.csv
