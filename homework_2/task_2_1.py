@@ -47,7 +47,7 @@ def parse_min_max_salary(salary):
                match.group(2) + " " + match.group(3)
 
 
-def parse_one_page(vacancy_name, page):
+def parse_one_page(vacancy_name, page, verbose=True):
     vacancy_url = "https://hh.ru/search/vacancy/"
 
     params = {
@@ -80,21 +80,23 @@ def parse_one_page(vacancy_name, page):
         job_link = job_title_item.attrs["href"]
         job_source_site = "https://hh.ru"
 
-        print(index, job_title_item.text)
         data['title'].append(job_title_item.text)
-        print(job_employer_item.text)
         data['employer'].append(job_employer_item.text)
-        print(f"source: {job_source_site}")
         data['source'].append(job_source_site)
-        print(f"link: {job_link}")
         data['link'].append(job_link)
-        print(f"salary: {job_salary_item.text if job_salary_item else '-'}")
         min_salary, max_salary = parse_min_max_salary(job_salary_item.text if job_salary_item else None)
-        print(f"min salary: {min_salary}")
-        print(f"max salary: {max_salary}")
         data['min_salary'].append(min_salary)
         data['max_salary'].append(max_salary)
-        print()
+
+        if verbose:
+            print(index, data['title'][-1])
+            print(data['employer'][-1])
+            print(f"source: {data['source'][-1]}")
+            print(f"link: {data['link'][-1]}")
+            print(f"salary: {job_salary_item.text if job_salary_item else None}")
+            print(f"min salary: {data['min_salary'][-1]}")
+            print(f"max salary: {data['max_salary'][-1]}")
+            print()
 
     return data
 
